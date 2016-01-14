@@ -21,19 +21,22 @@ export default Ember.Mixin.create({
    * @param {String} actionName - the name of the collection action to trigger
    */
   actionFor(actionName) {
+    var modelName = this.constructor.modelName;
+
     var store = this.get('store');
-    var adapter = store.adapterFor(this);
+    var adapter = store.adapterFor(modelName);
+
     var handler = this.get('actions.' + actionName);
     var invokeAdapterAction = (params) => {
-      var adapterAction = adapter.actionFor(this.type, actionName, this);
+      var adapterAction = adapter.actionFor(modelName, actionName, this);
       return adapterAction(params);
     };
 
     if (handler) {
-      return handler.bind(this, invokeAdapterAction, this.type);
+      return handler.bind(this, invokeAdapterAction, modelName);
     } else {
       handler = this.get('defaultAction');
-      return handler.bind(this, invokeAdapterAction, this.type, actionName);
+      return handler.bind(this, invokeAdapterAction, modelName, actionName);
     }
   },
 
