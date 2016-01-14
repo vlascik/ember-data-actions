@@ -3,6 +3,9 @@
 Introduces resource and collection actions to the Ember Data API, a la Rails. Actions are non-CRUD based endpoints in your RESTful API. Resource actions are actions performed on a single resource (i.e. "publish a book"), while collection actions are performed on the collection of resources (i.e. "a list of published books").
 
 ## Setup
+```
+npm install vovanmix/ember-data-actions --save-dev
+```
 
 To use resource or collection actions, you must include the appropriate mixins in your models and adapters.
 
