@@ -4,7 +4,7 @@ export default {
   name: 'ember-data-actions',
   after: 'store',
   initialize(container) {
-    var store = container.lookup('store:main');
+    var store = instance.__container__.lookup("service:store");
     store.reopen(StoreMixin);
   }
 };
