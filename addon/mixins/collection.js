@@ -20,8 +20,8 @@ export default Ember.Mixin.create({
    * @param {DS.Store} store
    * @param {String} actionName - the name of the collection action to trigger
    */
-  actionFor(store, actionName) {
-    var modelName = this.constructor.modelName;
+  actionFor(store, actionName, typeKey) {
+    var modelName = typeKey;
     var handler = Ember.get(this, 'actions.' + actionName);
     var adapter = store.adapterFor(modelName);
     var invokeAdapterAction = (params) => {
