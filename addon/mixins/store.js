@@ -10,7 +10,7 @@ export default Ember.Mixin.create({
    */
   action(typeKey, actionName, ...args) {
     var model = this.modelFor(typeKey);
-    var action = model.actionFor(this, actionName);
+    var action = model.actionFor(this, actionName, typeKey);
     return action(...args);
   }
 
