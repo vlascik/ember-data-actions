@@ -1,4 +1,6 @@
-import Ember from 'ember';
+﻿import Ember from 'ember';
+
+const { get } = Ember;
 
 export default Ember.Mixin.create({
 
@@ -22,7 +24,7 @@ export default Ember.Mixin.create({
    */
   actionFor(store, actionName, typeKey) {
     var modelName = typeKey;
-    var handler = Ember.get(this, 'actions.' + actionName);
+    var handler = get(this, 'actions.' + actionName);
     var adapter = store.adapterFor(modelName);
     var invokeAdapterAction = (params) => {
       var adapterAction = adapter.actionFor(modelName, actionName);
@@ -32,7 +34,7 @@ export default Ember.Mixin.create({
     if (handler) {
       return handler.bind(this, invokeAdapterAction, store);
     } else {
-      handler = Ember.get(this, 'defaultAction');
+      handler = get(this, 'defaultAction');
       return handler.bind(this, invokeAdapterAction, store, actionName);
     }
   },
